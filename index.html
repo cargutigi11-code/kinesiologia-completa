@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kinesiología Completa – Guía PDF</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.css">
+<style>
+:root{
+  --green:#1B4F3A;--green-light:#2E7D5A;--green-dark:#0F2E22;
+  --gold:#C8A84B;--gold-light:#E2C97A;
+  --black:#1A1A1A;--white:#fff;--cream:#F5F7F2;--gray:#666;
+  --red:#C0392B;--emerald:#1E8449;--emerald-light:#27AE60;
+  --radius:14px;--shadow:0 4px 20px rgba(0,0,0,.10);
+  --transition:all .3s ease;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Open Sans',sans-serif;font-size:15px;color:#444;background:var(--cream);overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+img{max-width:100%;display:block}
+h1,h2,h3,h4{font-family:'Montserrat',sans-serif;line-height:1.2}
+
+/* ── PROGRESS BAR ── */
+#progress-bar{position:fixed;top:0;left:0;width:0%;height:3px;background:linear-gradient(90deg,var(--green-light),var(--gold));z-index:9999;transition:width .1s}
+
+/* ── STICKY TOP BAR ── */
+#top-bar{background:linear-gradient(90deg,var(--green-dark),var(--green));color:#fff;text-align:center;padding:10px 16px;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px;position:sticky;top:0;z-index:1000;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+#top-bar span{color:var(--gold-light);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
+
+/* ── STICKY CTA BOTTOM ── */
+#sticky-cta{position:fixed;bottom:0;left:0;right:0;z-index:998;background:linear-gradient(135deg,#145A32,var(--emerald));padding:12px 16px;box-shadow:0 -4px 20px rgba(0,0,0,.25);transform:translateY(100%);transition:transform .4s ease;display:flex;align-items:center;justify-content:center;gap:10px}
+#sticky-cta.visible{transform:translateY(0)}
+#sticky-cta a{color:#fff;font-family:'Montserrat',sans-serif;font-weight:800;font-size:15px;text-align:center;line-height:1.3}
+#sticky-cta .price-tag{background:var(--gold);color:var(--black);font-weight:900;padding:4px 12px;border-radius:50px;font-size:14px;white-space:nowrap}
+
+/* ── SECTIONS ── */
+section{padding:48px 16px}
+.container{max-width:520px;margin:0 auto}
+.container-wide{max-width:900px;margin:0 auto}
+
+/* ── BACKGROUNDS ── */
+.bg-cream{background:var(--cream)}
+.bg-white{background:#fff}
+.bg-dark{background:linear-gradient(170deg,var(--green-dark) 0%,#061410 100%);color:#fff}
+.bg-dark h2{color:#fff}
+.bg-dark h2::after{background:linear-gradient(90deg,var(--gold),var(--gold-light))}
+.bg-dark p,.bg-dark span,.bg-dark em{color:rgba(255,255,255,.85)}
+.bg-dark strong{color:#fff}
+
+/* ── SECTION TITLE ── */
+h2.section-title{font-size:22px;text-align:center;margin-bottom:8px;color:var(--black)}
+h2.section-title::after{content:'';display:block;width:50px;height:3px;background:linear-gradient(90deg,var(--green-light),var(--gold));margin:10px auto 0;border-radius:2px}
+.section-sub{text-align:center;font-size:14px;color:var(--gray);margin-bottom:28px;line-height:1.6}
+
+/* ── BADGE ── */
+.hero-badge{display:inline-block;background:linear-gradient(135deg,var(--green-light),var(--green));color:#fff;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:5px 16px;border-radius:50px;margin-bottom:14px}
+
+/* ── HERO ── */
+#hero{background:linear-gradient(170deg,#fff 0%,var(--cream) 100%);padding-top:32px}
+#hero .headline{font-size:26px;font-weight:900;color:var(--green-dark);line-height:1.25;margin-bottom:16px;text-align:center}
+#hero .headline u{text-decoration-color:rgba(27,79,58,.4);text-underline-offset:4px}
+#hero .subline{font-size:14px;line-height:1.7;color:#555;text-align:center;margin-bottom:24px}
+.book-mockup{max-width:300px;margin:0 auto 24px;filter:drop-shadow(0 20px 40px rgba(0,0,0,.2));transition:transform .4s ease}
+.book-mockup:hover{transform:scale(1.03) rotate(-1deg)}
+
+/* ── SOCIAL PROOF BAR ── */
+#social-proof-bar{background:var(--green-dark);padding:14px 16px}
+#social-proof-bar .inner{display:flex;justify-content:space-around;align-items:center;flex-wrap:wrap;gap:12px;max-width:520px;margin:0 auto}
+#social-proof-bar .proof-item{display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.9);font-size:13px;font-weight:600;font-family:'Montserrat',sans-serif}
+#social-proof-bar .proof-item i{color:var(--gold-light);font-size:16px}
+
+/* ── PAIN / GAIN ── */
+.pg-card{background:#fff;border-radius:var(--radius);overflow:hidden;margin-bottom:20px;box-shadow:var(--shadow)}
+.pg-header{padding:14px 18px;display:flex;align-items:center;gap:10px}
+.pg-header h3{font-size:16px;font-family:'Montserrat',sans-serif}
+.pain .pg-header{background:#FDF2F2;border-bottom:3px solid var(--red)}
+.pain .pg-header i{color:var(--red)}
+.gain .pg-header{background:#F0FAF4;border-bottom:3px solid var(--green-light)}
+.gain .pg-header i{color:var(--green-light)}
+.pg-list{padding:16px 18px}
+.pg-item{display:flex;align-items:flex-start;gap:12px;margin-bottom:14px;font-size:14px;line-height:1.5}
+.pg-item:last-child{margin-bottom:0}
+.pain .pg-item i{color:var(--red);margin-top:2px}
+.gain .pg-item i{color:var(--green-light);margin-top:2px}
+
+/* ── ARROW DIVIDER ── */
+.arrow-divider{text-align:center;padding:8px 0 20px}
+.arrow-divider i{font-size:24px;color:var(--green-light);opacity:0;animation:cascade 2s infinite}
+.arrow-divider i:nth-child(2){animation-delay:.2s}
+.arrow-divider i:nth-child(3){animation-delay:.4s}
+@keyframes cascade{0%{transform:translateY(-10px);opacity:0}50%{opacity:1;transform:translateY(0)}100%{transform:translateY(10px);opacity:0}}
+
+/* ── CTA BUTTON ── */
+.cta-btn{display:block;background:linear-gradient(135deg,var(--emerald),var(--emerald-light));color:#fff;font-family:'Montserrat',sans-serif;font-weight:800;font-size:17px;text-align:center;padding:18px 20px;border-radius:50px;box-shadow:0 8px 25px rgba(30,132,73,.45);animation:ctaPulse 2s infinite;max-width:480px;margin:12px auto;text-transform:uppercase;letter-spacing:.5px;line-height:1.3;border:none;cursor:pointer}
+.cta-btn:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 12px 35px rgba(30,132,73,.6);animation:none;color:#fff}
+.cta-btn sub{display:block;font-size:11px;font-weight:400;text-transform:none;letter-spacing:0;opacity:.9;margin-top:4px}
+@keyframes ctaPulse{0%{box-shadow:0 8px 25px rgba(30,132,73,.4),0 0 0 0 rgba(30,132,73,.5)}70%{box-shadow:0 8px 25px rgba(30,132,73,.4),0 0 0 14px rgba(30,132,73,0)}100%{box-shadow:0 8px 25px rgba(30,132,73,.4),0 0 0 0 rgba(30,132,73,0)}}
+
+/* ── GUARANTEE ── */
+.guarantee{display:flex;align-items:center;gap:12px;background:#F0FAF4;border:1px solid #b7dfc7;border-radius:10px;padding:14px 16px;max-width:480px;margin:10px auto}
+.guarantee i{font-size:28px;color:var(--green-light);flex-shrink:0}
+.guarantee h4{font-size:14px;color:var(--green);margin-bottom:2px}
+.guarantee p{font-size:12px;color:var(--gray);margin:0}
+
+/* ── OFFER BOX ── */
+.offer-box{background:linear-gradient(135deg,#111,#1e1e1e);border:1px solid var(--green-light);border-radius:var(--radius);padding:22px 18px;animation:glow 2.5s infinite alternate;max-width:480px;margin:0 auto}
+@keyframes glow{from{box-shadow:0 0 15px rgba(27,79,58,.3)}to{box-shadow:0 0 30px rgba(200,168,75,.4)}}
+.price-old{font-size:17px;text-decoration:line-through;color:#888;font-family:'Montserrat',sans-serif;text-align:center}
+.price-new{font-family:'Montserrat',sans-serif;font-size:52px;font-weight:900;color:var(--gold-light);text-align:center;line-height:1}
+.price-note{text-align:center;font-size:12px;color:#bbb;margin-bottom:12px}
+.savings-badge{background:linear-gradient(135deg,var(--green-light),var(--green));color:#fff;text-align:center;padding:7px 20px;border-radius:50px;font-weight:800;font-size:12px;text-transform:uppercase;letter-spacing:.5px;max-width:260px;margin:0 auto 16px;font-family:'Montserrat',sans-serif}
+.trust-row{display:flex;justify-content:space-around;padding-top:14px;border-top:1px solid rgba(200,168,75,.25);flex-wrap:wrap;gap:8px}
+.trust-item{display:flex;align-items:center;gap:6px;color:#ddd;font-size:11px;font-weight:600;font-family:'Montserrat',sans-serif}
+.trust-item i{color:var(--gold-light)}
+
+/* ── COUNTDOWN ── */
+.countdown-wrap{background:linear-gradient(135deg,rgba(15,46,34,.95),rgba(5,20,12,.98));border:1px solid var(--green-light);border-radius:var(--radius);padding:18px;margin:16px auto;max-width:480px;text-align:center}
+.countdown-title{color:var(--gold-light);font-family:'Montserrat',sans-serif;font-weight:800;font-size:16px;margin-bottom:6px;display:flex;align-items:center;justify-content:center;gap:8px}
+.countdown-sub{color:rgba(255,255,255,.7);font-size:12px;margin-bottom:12px}
+.countdown-timer{display:flex;justify-content:center;gap:8px}
+.cd-seg{background:rgba(0,0,0,.4);border:1px solid rgba(200,168,75,.3);border-radius:8px;padding:10px;min-width:58px}
+.cd-num{font-family:'Montserrat',sans-serif;font-size:28px;font-weight:900;color:#fff;line-height:1}
+.cd-label{font-size:10px;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.5px;margin-top:3px}
+
+/* ── URGENCY ── */
+.urgency-stack{max-width:480px;margin:16px auto;display:flex;flex-direction:column;gap:10px}
+.viewers-badge{background:#111;color:#fff;font-weight:700;padding:11px 16px;border-radius:8px;font-size:14px;text-align:center;font-family:'Montserrat',sans-serif}
+.stock-badge{background:linear-gradient(135deg,#8B0000,#B71C1C);color:#fff;padding:11px 16px;border-radius:8px;font-size:14px;font-weight:700;text-align:center;font-family:'Montserrat',sans-serif;display:flex;align-items:center;justify-content:center;gap:10px}
+.pulse-dot{width:11px;height:11px;background:#fff;border-radius:50%;animation:pulsered 1.5s infinite;flex-shrink:0}
+@keyframes pulsered{0%{box-shadow:0 0 0 0 rgba(255,255,255,.7)}70%{box-shadow:0 0 0 8px rgba(255,255,255,0)}100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}}
+
+/* ── COMPARISON TABLE ── */
+.table-wrap{overflow-x:auto;border-radius:10px;box-shadow:var(--shadow);margin:20px 0}
+table{width:100%;border-collapse:collapse;font-size:13px;min-width:320px;background:#fff}
+thead th{background:var(--green-light);color:#fff;padding:10px 8px;font-weight:700;font-size:11px;text-align:center;font-family:'Montserrat',sans-serif}
+thead th:first-child{text-align:left;width:40%}
+td{padding:10px 8px;border-bottom:1px solid #eee;text-align:center;font-size:12px;vertical-align:middle}
+td:first-child{text-align:left;font-weight:600;color:var(--black);font-size:13px}
+tr:last-child td{border-bottom:none}
+.hl{background:rgba(27,79,58,.07);font-weight:700;color:var(--green)}
+
+/* ── FEATURES GRID ── */
+.features-grid{display:grid;grid-template-columns:1fr;gap:16px;margin:20px 0}
+.feature-card{background:#fff;border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);border:1px solid #e0ebe0;transition:var(--transition)}
+.feature-card:hover{transform:translateY(-4px);border-color:var(--green-light)}
+.feature-icon{font-size:28px;margin-bottom:8px}
+.feature-title{font-size:15px;font-weight:700;color:var(--green-dark);margin-bottom:6px;font-family:'Montserrat',sans-serif}
+.feature-card p{font-size:13px;line-height:1.6;color:#555}
+
+/* ── BONUS CARDS ── */
+.bonus-section-label{font-family:'Montserrat',sans-serif;font-weight:800;font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--green-dark);margin:28px 0 10px;text-align:center}
+.bonus-grid{display:flex;flex-direction:column;gap:18px;max-width:500px;margin:0 auto}
+.bonus-card{background:#fff;border:1px solid #e0ebe0;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:var(--transition)}
+.bonus-card:hover{transform:translateY(-4px);border-color:var(--green-light);box-shadow:0 12px 30px rgba(0,0,0,.12)}
+.bonus-card .cover{width:100%;height:180px;object-fit:cover;object-position:top}
+.bonus-card .body{padding:16px 18px 18px}
+.bonus-card h3{font-size:15px;font-weight:800;color:var(--green-dark);margin-bottom:8px;font-family:'Montserrat',sans-serif;line-height:1.3}
+.bonus-card p{font-size:13px;color:#555;line-height:1.6;margin-bottom:12px}
+.bonus-price{padding-top:10px;border-top:1px solid #eee;font-size:13px}
+.price-cross{text-decoration:line-through;color:var(--gray);margin-right:4px}
+.price-free{color:var(--emerald);font-weight:800;font-size:14px;font-family:'Montserrat',sans-serif}
+
+/* regalo cards – gold border */
+.regalo-card{border-color:var(--gold)}
+.regalo-card:hover{border-color:var(--gold-light)}
+
+/* ── PACKAGE SUMMARY ── */
+.package-box{background:rgba(255,255,255,.06);border:1px solid rgba(200,168,75,.25);border-radius:var(--radius);padding:20px;max-width:480px;margin:20px auto}
+.package-box .pkg-label{font-size:12px;font-weight:700;color:var(--gold-light);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;font-family:'Montserrat',sans-serif}
+.pkg-item{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:rgba(255,255,255,.9);margin-bottom:10px}
+.pkg-total{text-align:center;margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.1)}
+.pkg-old{font-size:15px;text-decoration:line-through;color:#999;font-family:'Montserrat',sans-serif}
+.pkg-new{font-family:'Montserrat',sans-serif;font-size:52px;font-weight:900;color:var(--gold-light);line-height:1.1}
+.pkg-note{font-size:12px;color:rgba(255,255,255,.6);margin-top:4px}
+
+/* ── TESTIMONIALS SWIPER ── */
+.swiper-container{width:calc(100% - 16px);margin:0 auto;padding:10px 0 40px}
+.swiper-slide{background:#fff;border:2px solid #e0ebe0;border-radius:12px;padding:16px;max-width:280px;height:auto;display:flex;flex-direction:column;gap:10px;box-shadow:var(--shadow)}
+.bg-dark .swiper-slide{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.1)}
+.sw-stars{color:#F5A235;font-size:18px}
+.sw-text{font-size:13px;line-height:1.6;color:#444}
+.bg-dark .sw-text{color:rgba(255,255,255,.85)}
+.sw-author{font-size:12px;font-weight:700;color:var(--green-dark);font-family:'Montserrat',sans-serif}
+.bg-dark .sw-author{color:#fff}
+.sw-badge{font-size:11px;color:var(--emerald);font-weight:400}
+.swiper-pagination-bullet{background:var(--green-light);opacity:1;width:.5rem;height:.5rem;border-radius:2px}
+.swiper-pagination-bullet-active{width:1.5rem;border-radius:4px}
+.swiper-button-prev,.swiper-button-next{color:#fff;background:var(--green);width:28px;height:28px;border-radius:50%;top:42%!important}
+.swiper-button-prev::after,.swiper-button-next::after{font-size:12px!important}
+@media(max-width:767px){.swiper-button-prev,.swiper-button-next{display:none}}
+
+/* ── INSTAGRAM BLOCK ── */
+.ig-wrap{background:#000;border-radius:12px;overflow:hidden;max-width:420px;margin:0 auto;font-family:-apple-system,BlinkMacSystemFont,'Inter',sans-serif}
+.ig-bar{padding:12px 16px;border-bottom:1px solid #262626}
+.ig-actions{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.ig-left{display:flex;gap:14px;align-items:center}
+.ig-icon svg{width:22px;height:22px;fill:none;stroke:#f5f5f5;stroke-width:2}
+.ig-heart svg{fill:#ff3040;stroke:#ff3040}
+.ig-likes{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.ig-avatars{display:flex}
+.ig-mini{width:20px;height:20px;border-radius:50%;border:2px solid #000;margin-left:-6px;object-fit:cover}
+.ig-mini:first-child{margin-left:0}
+.ig-like-text{font-size:13px;color:#f5f5f5}
+.ig-stats{font-size:13px;color:#a8a8a8;display:flex;gap:10px}
+.ig-view-all{padding:8px 16px;font-size:14px;color:#a8a8a8}
+.ig-divider{height:1px;background:#262626}
+.ig-comment{display:flex;padding:10px 16px;gap:10px}
+.ig-avatar{width:34px;height:34px;border-radius:50%;object-fit:cover;flex-shrink:0}
+.ig-body{flex:1}
+.ig-username{font-size:13px;font-weight:600;color:#f5f5f5}
+.ig-badge{font-size:11px;color:#a8a8a8;background:#262626;padding:1px 5px;border-radius:3px}
+.ig-time{font-size:11px;color:#a8a8a8;float:right}
+.ig-text{font-size:13px;color:#e0e0e0;line-height:1.4;margin-top:3px}
+.ig-reply{font-size:12px;color:#a8a8a8;font-weight:600;margin-top:6px;cursor:pointer}
+.ig-view-reply{padding:4px 16px 4px 60px;display:flex;align-items:center;gap:10px;cursor:pointer}
+.ig-line{width:24px;height:1px;background:#a8a8a8}
+.ig-reply-text{font-size:12px;color:#a8a8a8;font-weight:600}
+.ig-add{display:flex;align-items:center;padding:12px 16px;border-top:1px solid #262626;gap:10px}
+.ig-add-avatar{width:26px;height:26px;border-radius:50%;background:#262626;flex-shrink:0}
+.ig-add-text{flex:1;font-size:14px;color:#a8a8a8}
+.ig-emojis{display:flex;gap:6px;font-size:17px}
+
+/* ── FAQ ── */
+.faq-item{background:#fff;border:1px solid #e0ebe0;border-radius:10px;margin-bottom:10px;overflow:hidden;box-shadow:var(--shadow)}
+.faq-q{padding:14px 16px;font-weight:700;font-size:14px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;color:var(--green-dark);font-family:'Montserrat',sans-serif}
+.faq-q::after{content:'+';font-size:20px;color:var(--green-light);transition:var(--transition)}
+.faq-q.open::after{content:'−'}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.faq-a-inner{padding:14px 16px;border-top:1px solid #eee;font-size:13px;line-height:1.7;color:#555}
+
+/* ── PAYMENT LOGOS ── */
+.pay-logos{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:14px}
+.pay-card{background:#fff;border:1px solid #ddd;border-radius:7px;padding:8px 14px;height:40px;display:flex;align-items:center;min-width:70px}
+.pay-card img{height:22px;object-fit:contain}
+.bg-dark .pay-card{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.12)}
+.pay-label{text-align:center;font-size:12px;color:inherit;margin-bottom:8px;opacity:.8;display:flex;align-items:center;justify-content:center;gap:6px}
+
+/* ── FOOTER ── */
+footer{background:var(--black);color:#888;text-align:center;padding:24px 16px;font-size:12px;line-height:1.8;padding-bottom:72px}
+
+/* ── RESPONSIVE ── */
+@media(min-width:560px){.features-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:768px){.features-grid{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<!-- TOP BAR -->
+<div id="top-bar">
+  <i class="fas fa-fire"></i>
+  Oferta de lanzamiento expira en: <span id="bar-countdown">15:00</span>
+  <i class="fas fa-fire"></i>
+</div>
+
+<!-- STICKY CTA BOTTOM -->
+<div id="sticky-cta">
+  <a href="#">✅ QUIERO MI GUÍA COMPLETA</a>
+  <span class="price-tag">$12 USD</span>
+</div>
+
+<!-- ══════════════════════════════════════
+     HERO
+══════════════════════════════════════ -->
+<section id="hero" class="bg-white">
+  <div class="container">
+    <div style="text-align:center"><span class="hero-badge">🌿 Guía PDF Definitiva · Acceso Inmediato</span></div>
+    <h1 class="headline">El Cuerpo Habla. <u>Aprende a Escucharlo</u>: El Método que Une Ciencia, Movimiento y Bienestar</h1>
+    <p class="subline">El sistema completo para <strong>evaluar, equilibrar y transformar</strong> el cuerpo humano desde sus tres dimensiones: física, emocional y energética.</p>
+
+    <!-- BOOK MOCKUP -->
+    <img class="book-mockup" src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&q=80" alt="Kinesiología Completa – Guía PDF" onerror="this.style.display='none'">
+
+    <!-- MINI SOCIAL PROOF -->
+    <div style="display:flex;justify-content:center;align-items:center;gap:8px;margin-bottom:20px">
+      <div style="display:flex">
+        <img src="https://randomuser.me/api/portraits/women/33.jpg" style="width:28px;height:28px;border-radius:50%;border:2px solid #fff;margin-left:-6px" alt="">
+        <img src="https://randomuser.me/api/portraits/men/45.jpg" style="width:28px;height:28px;border-radius:50%;border:2px solid #fff;margin-left:-6px" alt="">
+        <img src="https://randomuser.me/api/portraits/women/62.jpg" style="width:28px;height:28px;border-radius:50%;border:2px solid #fff;margin-left:-6px" alt="">
+        <img src="https://randomuser.me/api/portraits/men/22.jpg" style="width:28px;height:28px;border-radius:50%;border:2px solid #fff;margin-left:-6px" alt="">
+      </div>
+      <span style="font-size:13px;color:#555"><strong style="color:var(--green-dark)">+850 profesionales</strong> ya lo aplican ★★★★★</span>
+    </div>
+
+    <a class="cta-btn" href="#">✅ QUIERO MI GUÍA AHORA — $12 USD<sub>🔒 Acceso inmediato · PDF descargable · Garantía 7 días</sub></a>
+    <div class="guarantee">
+      <i class="fas fa-shield-alt"></i>
+      <div><h4>Garantía 100% — 7 días sin preguntas</h4><p>Si no estás satisfecho, te devolvemos cada centavo. Sin formularios, sin excusas.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF BAR -->
+<div id="social-proof-bar">
+  <div class="inner">
+    <div class="proof-item"><i class="fas fa-users"></i> +850 alumnos</div>
+    <div class="proof-item"><i class="fas fa-star"></i> 4.9 / 5 estrellas</div>
+    <div class="proof-item"><i class="fas fa-bolt"></i> Acceso inmediato</div>
+    <div class="proof-item"><i class="fas fa-globe"></i> Todo el mundo</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PROBLEMA → SOLUCIÓN
+══════════════════════════════════════ -->
+<section class="bg-cream">
+  <div class="container">
+    <h2 class="section-title">¿Te suena familiar?</h2>
+    <p class="section-sub">Si trabajas el cuerpo humano — como deportista, terapeuta o coach — probablemente ya lo sentiste.</p>
+
+    <div class="pg-card pain">
+      <div class="pg-header"><i class="fas fa-times-circle fa-lg"></i><h3>El problema que nadie resuelve</h3></div>
+      <div class="pg-list">
+        <div class="pg-item"><i class="fas fa-times-circle"></i><span>Meses entrenando con esfuerzo y tu rendimiento <strong>sigue igual</strong> — sin entender por qué</span></div>
+        <div class="pg-item"><i class="fas fa-times-circle"></i><span>Aprendes técnicas de terapia pero <strong>falta algo</strong> que conecte cuerpo, mente y resultado</span></div>
+        <div class="pg-item"><i class="fas fa-times-circle"></i><span>Trabajas bienestar holístico pero <strong>sin el fundamento sólido</strong> que respalde tu práctica</span></div>
+        <div class="pg-item"><i class="fas fa-times-circle"></i><span>Tratas los mismos problemas en bucle porque <strong>atacas síntomas, no causas</strong></span></div>
+      </div>
+    </div>
+
+    <div class="arrow-divider"><i class="fas fa-arrow-down"></i><i class="fas fa-arrow-down"></i><i class="fas fa-arrow-down"></i></div>
+
+    <div class="pg-card gain">
+      <div class="pg-header"><i class="fas fa-check-circle fa-lg"></i><h3>Lo que logras con esta guía</h3></div>
+      <div class="pg-list">
+        <div class="pg-item"><i class="fas fa-check-circle"></i><span><strong>El sistema completo de evaluación kinesiológica</strong> para detectar desequilibrios que otros métodos no ven</span></div>
+        <div class="pg-item"><i class="fas fa-check-circle"></i><span><strong>Los 3 enfoques en un solo recurso:</strong> deportivo, aplicado y holístico — aplicables desde el día uno</span></div>
+        <div class="pg-item"><i class="fas fa-check-circle"></i><span><strong>Protocolos paso a paso</strong> adaptados a tu perfil profesional exacto</span></div>
+        <div class="pg-item"><i class="fas fa-check-circle"></i><span><strong>150+ años de ciencia</strong> integrados en lenguaje claro y aplicable hoy mismo</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     OFFER BOX #1
+══════════════════════════════════════ -->
+<section class="bg-dark" id="comprar">
+  <div class="container">
+    <h2 class="section-title">Tu Acceso Completo Hoy</h2>
+
+    <div class="countdown-wrap">
+      <div class="countdown-title"><i class="fas fa-fire"></i> ¡Oferta de Lanzamiento!</div>
+      <div class="countdown-sub">El precio sube cuando el contador llegue a cero</div>
+      <div class="countdown-timer" id="countdown1">
+        <div class="cd-seg"><div class="cd-num">15</div><div class="cd-label">Min</div></div>
+        <div class="cd-seg"><div class="cd-num">00</div><div class="cd-label">Seg</div></div>
+      </div>
+    </div>
+
+    <div class="offer-box">
+      <div class="price-old">$218 USD</div>
+      <div class="price-new">$12 USD</div>
+      <div class="price-note">Pago único · Sin suscripciones · Tuyo para siempre</div>
+      <div class="savings-badge">AHORRAS $206 USD HOY</div>
+      <div class="trust-row">
+        <div class="trust-item"><i class="fas fa-shield-alt"></i> Pago Seguro</div>
+        <div class="trust-item"><i class="fas fa-bolt"></i> Acceso Inmediato</div>
+        <div class="trust-item"><i class="fas fa-download"></i> PDF Descargable</div>
+      </div>
+    </div>
+
+    <div class="urgency-stack">
+      <div class="viewers-badge">👁 <strong><span class="viewer-count">247</span> personas</strong> viendo esta oferta ahora</div>
+      <div class="stock-badge"><span class="pulse-dot"></span> Solo quedan <strong><span class="spots">31</span> copias</strong> a este precio</div>
+    </div>
+
+    <a class="cta-btn" href="#">✅ SÍ, QUIERO MI GUÍA + 5 BONUS + 3 REGALOS<sub>🔒 Pago seguro · Acceso inmediato · Garantía 7 días</sub></a>
+
+    <div class="pay-label" style="color:rgba(255,255,255,.7);margin-top:16px"><i class="fas fa-lock"></i> Pago 100% seguro y encriptado</div>
+    <div class="pay-logos">
+      <div class="pay-card"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa"></div>
+      <div class="pay-card"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Mastercard_2019_logo.svg" alt="Mastercard"></div>
+      <div class="pay-card"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal"></div>
+      <div class="pay-card"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/American_Express_logo_%282018%29.svg" alt="Amex"></div>
+    </div>
+
+    <div class="guarantee" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.15);margin-top:16px">
+      <i class="fas fa-shield-alt" style="color:var(--gold-light)"></i>
+      <div><h4 style="color:var(--gold-light)">Garantía 100% — 7 días sin preguntas</h4><p style="color:rgba(255,255,255,.7)">Reembolso completo e inmediato si no estás satisfecho.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     COMPARISON
+══════════════════════════════════════ -->
+<section class="bg-white">
+  <div class="container-wide" style="padding:0 16px">
+    <h2 class="section-title">¿Por qué esta guía y no otra alternativa?</h2>
+    <p class="section-sub">La kinesiología funciona. El problema es que nadie la enseña de forma completa e integrada.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th></th><th>Cursos Online</th><th>YouTube</th><th>Esta Guía</th></tr></thead>
+        <tbody>
+          <tr><td>Precio</td><td>$200–$800</td><td>Gratis</td><td class="hl">$12 USD</td></tr>
+          <tr><td>3 enfoques integrados</td><td>❌</td><td>❌</td><td class="hl">✅</td></tr>
+          <tr><td>Protocolos por perfil</td><td>⚠️</td><td>❌</td><td class="hl">✅</td></tr>
+          <tr><td>Test muscular paso a paso</td><td>⚠️</td><td>❌</td><td class="hl">✅</td></tr>
+          <tr><td>Conexión cuerpo-emoción</td><td>❌</td><td>❌</td><td class="hl">✅</td></tr>
+          <tr><td>Aplicación inmediata</td><td>❌</td><td>❌</td><td class="hl">✅</td></tr>
+          <tr><td>Pago único · Tuyo siempre</td><td>❌</td><td>❌</td><td class="hl">✅</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     WHAT'S INSIDE
+══════════════════════════════════════ -->
+<section class="bg-cream">
+  <div class="container-wide" style="padding:0 16px">
+    <h2 class="section-title">Todo lo que hay dentro de la guía</h2>
+    <p class="section-sub">5 módulos con 150+ años de ciencia presentados en lenguaje claro y aplicable desde el primer día.</p>
+    <div class="features-grid">
+      <div class="feature-card"><div class="feature-icon">🏛️</div><div class="feature-title">Módulo 1 — Fundamentos</div><p>Los orígenes desde 1854. La ciencia del test muscular. El principio que lo sustenta todo.</p></div>
+      <div class="feature-card"><div class="feature-icon">🏅</div><div class="feature-title">Módulo 2 — Deportivo</div><p>Análisis biomecánico, prevención de lesiones y optimización del rendimiento físico.</p></div>
+      <div class="feature-card"><div class="feature-icon">🩺</div><div class="feature-title">Módulo 3 — Aplicada</div><p>Evaluación estructural, química y mental. Test manuales con aplicación clínica.</p></div>
+      <div class="feature-card"><div class="feature-icon">🌿</div><div class="feature-title">Módulo 4 — Holística</div><p>Acupresión, meridianos, equilibrio energético. Liberación de bloqueos emocionales.</p></div>
+      <div class="feature-card"><div class="feature-icon">🎯</div><div class="feature-title">Módulo 5 — Aplicación Real</div><p>Protocolos por perfil: deportistas, terapeutas y coaches. Casos reales de uso.</p></div>
+      <div class="feature-card"><div class="feature-icon">🔬</div><div class="feature-title">Respaldo Científico</div><p>Ciencia y tradición integradas honestamente. Desde George Goodheart hasta hoy.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     TESTIMONIALS
+══════════════════════════════════════ -->
+<section class="bg-dark">
+  <div class="container-wide" style="padding:0 16px">
+    <h2 class="section-title">Lo que dicen quienes ya lo aplican ❤️</h2>
+    <div class="swiper-container swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><div class="sw-stars">★★★★★</div><p class="sw-text">"Llevaba años aplicando técnicas aisladas. Esta guía me dio el marco completo para conectar lo físico, emocional y energético. Mi práctica cambió radicalmente."</p><div class="sw-author">Valentina M. — Fisioterapeuta <span class="sw-badge">✔ Verificado</span></div></div>
+        <div class="swiper-slide"><div class="sw-stars">★★★★★</div><p class="sw-text">"Tenía una lesión en el hombro recurrente. Después del módulo deportivo entendí el patrón que la causaba. Ahora entreno diferente y sin dolor."</p><div class="sw-author">Sebastián R. — Atleta CrossFit <span class="sw-badge">✔ Verificado</span></div></div>
+        <div class="swiper-slide"><div class="sw-stars">★★★★★</div><p class="sw-text">"Era exactamente lo que necesitaba para darle fundamento a mi trabajo holístico. Mis clientes notan una diferencia enorme en el acompañamiento."</p><div class="sw-author">Daniela C. — Coach de Bienestar <span class="sw-badge">✔ Verificado</span></div></div>
+        <div class="swiper-slide"><div class="sw-stars">★★★★★</div><p class="sw-text">"El checklist postural lo uso en cada consulta. En minutos tengo una lectura que antes me tomaba toda una sesión."</p><div class="sw-author">Patricia G. — Terapeuta Física <span class="sw-badge">✔ Verificado</span></div></div>
+        <div class="swiper-slide"><div class="sw-stars">★★★★★</div><p class="sw-text">"Por $12 obtuve lo que otros cursos cobran $300. El glosario técnico solo ya vale el precio completo."</p><div class="sw-author">María J. — Terapeuta Holística <span class="sw-badge">✔ Verificado</span></div></div>
+        <div class="swiper-slide"><div class="sw-stars">★★★★★</div><p class="sw-text">"Estoy en segundo año de fisioterapia y esta guía complementa perfectamente lo académico. El test muscular es la herramienta que la universidad no me daba."</p><div class="sw-author">Carlos M. — Estudiante Fisioterapia <span class="sw-badge">✔ Verificado</span></div></div>
+      </div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-pagination"></div>
+    </div>
+
+    <p style="text-align:center;font-weight:800;font-size:16px;color:#fff;font-family:'Montserrat',sans-serif;margin:8px 0 24px">MÁS DE 850 PROFESIONALES SATISFECHOS ★★★★★</p>
+
+    <!-- INSTAGRAM COMMENTS -->
+    <div class="ig-wrap">
+      <div class="ig-bar">
+        <div class="ig-actions">
+          <div class="ig-left">
+            <div class="ig-icon ig-heart"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></div>
+            <div class="ig-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke-linejoin="round" stroke-linecap="round"></path></svg></div>
+          </div>
+        </div>
+        <div class="ig-likes">
+          <div class="ig-avatars">
+            <img class="ig-mini" src="https://randomuser.me/api/portraits/women/33.jpg" alt="">
+            <img class="ig-mini" src="https://randomuser.me/api/portraits/men/45.jpg" alt="">
+            <img class="ig-mini" src="https://randomuser.me/api/portraits/women/62.jpg" alt="">
+          </div>
+          <div class="ig-like-text">Le gusta a <strong>fisio.valentina</strong> y <strong>312 personas más</strong></div>
+        </div>
+        <div class="ig-stats"><span>47 comentarios</span><span>·</span><span>8 veces compartido</span></div>
+      </div>
+      <div class="ig-view-all">Ver los 47 comentarios</div>
+      <div class="ig-divider"></div>
+      <div class="ig-comment"><img class="ig-avatar" src="https://randomuser.me/api/portraits/women/33.jpg" alt=""><div class="ig-body"><span class="ig-username">fisio.valentina.m</span> <span class="ig-badge">Del autor</span><span class="ig-time">1 h</span><p class="ig-text">Increíble recurso 🙌 La kinesiología aplicada + holística es la combinación que necesitaba para mis pacientes 💚</p><div class="ig-reply">Responder · ❤️ 31</div></div></div>
+      <div class="ig-view-reply"><div class="ig-line"></div><span class="ig-reply-text">Ver 2 respuestas</span></div>
+      <div class="ig-comment"><img class="ig-avatar" src="https://randomuser.me/api/portraits/men/45.jpg" alt=""><div class="ig-body"><span class="ig-username">coach.sebastian.fit</span><span class="ig-time">2 h</span><p class="ig-text">El módulo deportivo me cambió la forma de entrenar 🏋️ El test muscular es brutal para cualquier atleta 🔥</p><div class="ig-reply">Responder · ❤️ 24</div></div></div>
+      <div class="ig-divider"></div>
+      <div class="ig-add"><img src="https://randomuser.me/api/portraits/men/22.jpg" class="ig-add-avatar" alt=""><span class="ig-add-text">Agregar un comentario...</span><div class="ig-emojis"><span>💚</span><span>🔥</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     BONUSES
+══════════════════════════════════════ -->
+<section class="bg-white">
+  <div class="container">
+    <h2 class="section-title">🎁 5 Bonus + 3 Regalos GRATIS</h2>
+    <p class="section-sub">No es solo una guía. Es un sistema completo. Cada bonus fue diseñado para que apliques desde el primer día.</p>
+
+    <div class="bonus-section-label">🎁 5 Bonus Incluidos</div>
+    <div class="bonus-grid">
+
+      <div class="bonus-card">
+        <img class="cover" src="https://images.unsplash.com/photo-1532012197267-da84d127e765?w=600&q=80" alt="Glosario Técnico de Kinesiología">
+        <div class="body">
+          <h3>📚 Bonus #1 — Glosario Técnico de Kinesiología</h3>
+          <p>Más de 80 términos clave — biomecánica, neurología, meridianos — explicados en lenguaje claro y profesional para que nunca te quedes en blanco frente a un concepto técnico.</p>
+          <div class="bonus-price">Valor: <span class="price-cross">$17 USD</span> <span class="price-free">HOY GRATIS 🎁</span></div>
+        </div>
+      </div>
+
+      <div class="bonus-card">
+        <img class="cover" src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80" alt="Test Muscular Paso a Paso">
+        <div class="body">
+          <h3>💪 Bonus #2 — Test Muscular Paso a Paso</h3>
+          <p>Protocolo completo del test muscular manual: preparación, aplicación de presión e interpretación de respuestas. Aplicable desde el primer día sin años de práctica previa.</p>
+          <div class="bonus-price">Valor: <span class="price-cross">$17 USD</span> <span class="price-free">HOY GRATIS 🎁</span></div>
+        </div>
+      </div>
+
+      <div class="bonus-card">
+        <img class="cover" src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600&q=80" alt="Checklist de Evaluación Postural">
+        <div class="body">
+          <h3>📋 Bonus #3 — Checklist de Evaluación Postural</h3>
+          <p>Formulario estructurado para analizar postura de pie, sentado y en movimiento. Con puntos clave, señales de alerta y correlaciones con desequilibrios musculares y emocionales.</p>
+          <div class="bonus-price">Valor: <span class="price-cross">$12 USD</span> <span class="price-free">HOY GRATIS 🎁</span></div>
+        </div>
+      </div>
+
+      <div class="bonus-card">
+        <img class="cover" src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&q=80" alt="Lesiones Deportivas">
+        <div class="body">
+          <h3>🦵 Bonus #4 — Lesiones Deportivas y Abordaje Kinesiológico</h3>
+          <p>Identifica, previene y aborda las lesiones deportivas más frecuentes — esguinces, tendinopatías, sobrecargas — desde la perspectiva kinesiológica integral.</p>
+          <div class="bonus-price">Valor: <span class="price-cross">$19 USD</span> <span class="price-free">HOY GRATIS 🎁</span></div>
+        </div>
+      </div>
+
+      <div class="bonus-card">
+        <img class="cover" src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&q=80" alt="Respiración y Movimiento Consciente">
+        <div class="body">
+          <h3>🌬️ Bonus #5 — Respiración y Movimiento Consciente</h3>
+          <p>Cómo la respiración diafragmática influye en el tono muscular, la postura y el estrés. Incluye 5 secuencias de movimiento consciente para integrar cuerpo y sistema nervioso.</p>
+          <div class="bonus-price">Valor: <span class="price-cross">$15 USD</span> <span class="price-free">HOY GRATIS 🎁</span></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="bonus-section-label" style="margin-top:32px">🎀 3 Regalos Sorpresa Adicionales</div>
+    <div class="bonus-grid">
+
+      <div class="bonus-card regalo-card">
+        <img class="cover" src="https://images.unsplash.com/photo-1512438248247-f0f2a5a8b7f0?w=600&q=80" alt="Kinesiología y Gestión del Estrés">
+        <div class="body">
+          <h3>🧘 Regalo #1 — Kinesiología y Gestión del Estrés</h3>
+          <p>Cómo el estrés crónico se somatiza en tensiones musculares y bloqueos energéticos — y cómo abordarlo con herramientas kinesiológicas concretas de liberación.</p>
+          <div class="bonus-price">Valor: <span class="price-cross">$21 USD</span> <span class="price-free">HOY GRATIS 🎀</span></div>
+        </div>
+      </div>
+
+      <div class="bonus-card regalo-card">
+        <img class="cover" src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80" alt="Calentamiento y Enfriamiento Kinesiológico">
+        <div class="body">
+          <h3>🏃 Regalo #2 — Calentamiento y Enfriamiento Kinesiológico</h3>
+          <p>Protocolos de activación pre-entrenamiento y recuperación post-esfuerzo diseñados desde principios kinesiológicos para reducir lesiones y acelerar la recuperación.</p>
+          <div class="bonus-price">Valor: <span class="price-cross">$17 USD</span> <span class="price-free">HOY GRATIS 🎀</span></div>
+        </div>
+      </div>
+
+      <div class="bonus-card regalo-card">
+        <img class="cover" src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&q=80" alt="Alimentación y Kinesiología">
+        <div class="body">
+          <h3>🥗 Regalo #3 — Alimentación y Kinesiología</h3>
+          <p>La conexión entre nutrición y rendimiento muscular: cómo ciertos alimentos afectan el tono, la inflamación y la respuesta energética del cuerpo desde la perspectiva kinesiológica.</p>
+          <div class="bonus-price">Valor: <span class="price-cross">$19 USD</span> <span class="price-free">HOY GRATIS 🎀</span></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- PACKAGE TOTAL -->
+    <div style="background:linear-gradient(135deg,var(--green-dark),#061410);border-radius:var(--radius);padding:22px 18px;margin:28px auto 0;max-width:480px;text-align:center">
+      <div style="font-size:12px;font-weight:700;color:var(--gold-light);text-transform:uppercase;letter-spacing:1px;font-family:'Montserrat',sans-serif;margin-bottom:14px">📦 Todo lo que recibes hoy</div>
+      <div style="display:flex;flex-direction:column;gap:8px;text-align:left;margin-bottom:16px">
+        <div style="display:flex;gap:10px;font-size:13px;color:rgba(255,255,255,.9)"><span>✅</span><span>Guía PDF <strong>Kinesiología Completa</strong> — 5 módulos</span></div>
+        <div style="display:flex;gap:10px;font-size:13px;color:rgba(255,255,255,.9)"><span>🎁</span><span>5 Bonus: Glosario · Test Muscular · Postural · Lesiones · Respiración</span></div>
+        <div style="display:flex;gap:10px;font-size:13px;color:rgba(255,255,255,.9)"><span>🎀</span><span>3 Regalos: Estrés · Calentamiento · Alimentación</span></div>
+        <div style="display:flex;gap:10px;font-size:13px;color:rgba(255,255,255,.9)"><span>🛡️</span><span>Garantía 7 días — devolución sin preguntas</span></div>
+      </div>
+      <div style="font-size:15px;text-decoration:line-through;color:#888;font-family:'Montserrat',sans-serif">$218 USD</div>
+      <div style="font-family:'Montserrat',sans-serif;font-size:52px;font-weight:900;color:var(--gold-light);line-height:1.1">$12 USD</div>
+      <div style="font-size:12px;color:rgba(255,255,255,.6);margin-top:4px">Ahorras <strong style="color:#ff7070">$206 USD</strong> · Pago único · Sin suscripciones</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     OFFER BOX #2
+══════════════════════════════════════ -->
+<section class="bg-dark">
+  <div class="container">
+    <h2 class="section-title">¿El Cuerpo Te Habla y Aún No Sabes Escucharlo?</h2>
+    <p style="text-align:center;font-size:14px;color:rgba(255,255,255,.8);margin-bottom:24px;line-height:1.7">Cada día sin este conocimiento es un día tratando síntomas en lugar de causas. <strong>La kinesiología no es el futuro de la salud. Es el presente.</strong></p>
+
+    <div class="countdown-wrap">
+      <div class="countdown-title"><i class="fas fa-clock"></i> La oferta expira en:</div>
+      <div class="countdown-timer" id="countdown2">
+        <div class="cd-seg"><div class="cd-num">15</div><div class="cd-label">Min</div></div>
+        <div class="cd-seg"><div class="cd-num">00</div><div class="cd-label">Seg</div></div>
+      </div>
+    </div>
+
+    <div class="urgency-stack">
+      <div class="viewers-badge">👁 <strong><span class="viewer-count">247</span> personas</strong> viendo esta oferta ahora</div>
+      <div class="stock-badge"><span class="pulse-dot"></span> Solo quedan <strong><span class="spots">31</span> copias</strong> a este precio</div>
+    </div>
+
+    <a class="cta-btn" href="#">✅ SÍ, QUIERO MI GUÍA — $12 USD<sub>⚡ Acceso inmediato · 5 Bonus + 3 Regalos · Garantía 7 días</sub></a>
+
+    <div class="guarantee" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.15);margin-top:16px">
+      <i class="fas fa-shield-alt" style="color:var(--gold-light)"></i>
+      <div><h4 style="color:var(--gold-light)">Garantía 100% — 7 días sin preguntas</h4><p style="color:rgba(255,255,255,.7)">Si no estás satisfecho, te devolvemos cada centavo. Sin formularios.</p></div>
+    </div>
+
+    <div class="pay-label" style="color:rgba(255,255,255,.7);margin-top:16px"><i class="fas fa-lock"></i> Pago 100% seguro y encriptado</div>
+    <div class="pay-logos">
+      <div class="pay-card"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa"></div>
+      <div class="pay-card"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Mastercard_2019_logo.svg" alt="Mastercard"></div>
+      <div class="pay-card"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal"></div>
+      <div class="pay-card"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/American_Express_logo_%282018%29.svg" alt="Amex"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     GUARANTEE SECTION
+══════════════════════════════════════ -->
+<section class="bg-white">
+  <div class="container" style="text-align:center">
+    <h2 class="section-title">Tu Inversión Está 100% Protegida 🛡️</h2>
+    <p class="section-sub">Estamos tan seguros de que esta guía va a transformar tu práctica que te ofrecemos una garantía total.</p>
+    <div style="font-size:64px;margin:12px 0">🛡️</div>
+    <p style="font-size:14px;line-height:1.8;color:#555;max-width:420px;margin:0 auto 20px">Si en los próximos <strong>7 días</strong> no estás completamente satisfecho, te devolvemos el <strong>100% de tu dinero</strong> — sin preguntas, sin formularios, sin esperas. El riesgo es nuestro, no tuyo.</p>
+    <div class="guarantee" style="max-width:420px">
+      <i class="fas fa-shield-alt"></i>
+      <div><h4>Garantía de Satisfacción Total — 7 Días</h4><p>Reembolso completo e inmediato. Sin condiciones.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     FAQ
+══════════════════════════════════════ -->
+<section class="bg-cream">
+  <div class="container">
+    <h2 class="section-title">🤔 Preguntas Frecuentes</h2>
+    <p class="section-sub">Todo lo que necesitas saber antes de dar el paso.</p>
+    <div id="faq">
+      <div class="faq-item"><div class="faq-q">¿Necesito conocimientos previos?</div><div class="faq-a"><div class="faq-a-inner">No. Está escrita para principiantes y profesionales. El lenguaje es claro, estructurado y progresivo desde los fundamentos hasta la aplicación avanzada.</div></div></div>
+      <div class="faq-item"><div class="faq-q">¿En qué formato está disponible?</div><div class="faq-a"><div class="faq-a-inner">PDF descargable. Lo lees en computadora, tablet o celular, en cualquier momento y lugar, sin conexión a internet.</div></div></div>
+      <div class="faq-item"><div class="faq-q">¿Sirve si solo me interesa un enfoque?</div><div class="faq-a"><div class="faq-a-inner">Sí. Los tres enfoques son independientes. Puedes ir directo al módulo deportivo, aplicado u holístico sin leer todo en orden.</div></div></div>
+      <div class="faq-item"><div class="faq-q">¿Tiene base científica?</div><div class="faq-a"><div class="faq-a-inner">Integra fundamentos científicos del análisis biomecánico y neuromuscular con enfoques complementarios y holísticos, presentados de forma honesta y rigurosa.</div></div></div>
+      <div class="faq-item"><div class="faq-q">¿Es pago único o recurrente?</div><div class="faq-a"><div class="faq-a-inner">Pago único. Pagas una vez y la guía + los 5 bonus + 3 regalos son tuyos para siempre. Sin suscripciones ni cargos ocultos.</div></div></div>
+      <div class="faq-item"><div class="faq-q">¿Cuándo recibo los bonus y regalos?</div><div class="faq-a"><div class="faq-a-inner">Inmediatamente al confirmar tu pago. Todo en un solo paquete descargable.</div></div></div>
+    </div>
+    <a class="cta-btn" href="#" style="margin-top:24px">✅ QUIERO LA GUÍA COMPLETA — $12 USD<sub>🔒 Pago único · 5 Bonus + 3 Regalos · Garantía 7 días</sub></a>
+  </div>
+</section>
+
+<footer>
+  <p style="margin-bottom:6px">© 2026 — Kinesiología Completa · Todos los derechos reservados</p>
+  <p>Esta guía es material educativo. No reemplaza la formación profesional ni el criterio clínico del terapeuta.</p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.js"></script>
+<script>
+// PROGRESS BAR
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  const pct=(h.scrollTop||document.body.scrollTop)/((h.scrollHeight||document.body.scrollHeight)-h.clientHeight)*100;
+  document.getElementById('progress-bar').style.width=pct+'%';
+});
+
+// STICKY CTA
+const stickyCta=document.getElementById('sticky-cta');
+const hero=document.getElementById('hero');
+window.addEventListener('scroll',()=>{
+  const heroBottom=hero.getBoundingClientRect().bottom;
+  stickyCta.classList.toggle('visible',heroBottom<0);
+});
+
+// SWIPER
+new Swiper('.swiper',{
+  slidesPerView:'auto',spaceBetween:10,
+  navigation:{nextEl:'.swiper-button-next',prevEl:'.swiper-button-prev'},
+  pagination:{el:'.swiper-pagination',clickable:true},
+  autoplay:{delay:7000,disableOnInteraction:false},
+  breakpoints:{768:{slidesPerView:2},1024:{slidesPerView:3}}
+});
+
+// COUNTDOWN — shared timer
+let total=15*60;
+function pad(n){return n<10?'0'+n:n}
+function tick(){
+  const m=Math.floor(total/60),s=total%60;
+  const str=pad(m)+':'+s;
+  document.getElementById('bar-countdown').textContent=str;
+  const html=`<div class="cd-seg"><div class="cd-num">${pad(m)}</div><div class="cd-label">Min</div></div><div class="cd-seg"><div class="cd-num">${pad(s)}</div><div class="cd-label">Seg</div></div>`;
+  document.getElementById('countdown1').innerHTML=html;
+  document.getElementById('countdown2').innerHTML=html;
+  if(--total<0)total=0;
+}
+tick();setInterval(tick,1000);
+
+// VIEWER COUNT
+let viewers=247;
+document.querySelectorAll('.viewer-count').forEach(el=>{el.textContent=viewers});
+setInterval(()=>{
+  viewers+=Math.floor(Math.random()*3)+1;
+  document.querySelectorAll('.viewer-count').forEach(el=>{el.textContent=viewers});
+},6000);
+
+// FAQ
+document.querySelectorAll('.faq-q').forEach(q=>{
+  q.addEventListener('click',()=>{
+    const open=q.classList.contains('open');
+    document.querySelectorAll('.faq-q.open').forEach(el=>{el.classList.remove('open');el.nextElementSibling.style.maxHeight=null});
+    if(!open){q.classList.add('open');q.nextElementSibling.style.maxHeight=q.nextElementSibling.scrollHeight+'px'}
+  });
+});
+</script>
+</body>
+</html>
